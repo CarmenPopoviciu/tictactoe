@@ -1,0 +1,15 @@
+{
+  "name": "tictactoe",
+  "version": "1.0.0",
+  "description": "Play tic tac toe in your terminal",
+  "bin": {
+    "tictactoe": "ticTacToe.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CarmenPopoviciu/tictactoe.git"
+  },
+  "author": "Carmen Popoviciu",
+  "license": "ISC",
+  "homepage": "https://github.com/CarmenPopoviciu/tictactoe#readme"
+}
