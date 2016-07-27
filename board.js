@@ -1,6 +1,8 @@
 (function() {
   'use strict';
 
+  var POSITIONS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
   function Board() {
     this.board =  [
         [null, null, null],
@@ -10,22 +12,41 @@
   }
 
   /**
+   * Returns the valid positions array
+   */
+  Board.prototype.positions = function() {
+    return POSITIONS;
+  }
+
+  /**
+   * Checks if given position is valid
+   * @param {Number} position Position on the board
+   * @return {Boolean}
+   */
+  Board.prototype.isValidPosition = function(position) {
+    if(POSITIONS.indexOf(position) === -1) {
+      console.log('Invalid postion. Expected number between 1 and 9');
+      return false;
+    }
+    return true;
+  }
+
+  /**
    * Marks given position on the board with "o" or "x", based on which player is making the move
    * 
-   * @param {String|Number} position The position on the board
-   * @param {Object} player The player doing the move
-   * @return {Number} The marked value or -1 if invalid move
+   * @param {Number} position The position on the board
+   * @param {Object} player The player making the move
    */
   Board.prototype.mark = function(position, player) {
+    if(!this.isValidPosition(position)) return;
     var index = positionToIndex(position),
         i = index[0],
         j = index[1];
     if(this.board[i][j]) {
       console.log('Position already marked. Try again');
-      return -1;
+      return;
     }
     this.board[i][j] = player;
-    return this.board[i][j];
   }
 
   /**
@@ -155,7 +176,6 @@
    * Convert board position to matrix indexes [i,j]
    */
   function positionToIndex(position) {
-    position = Number(position);
     switch(position) {
       case 1:
         return [0,0];
